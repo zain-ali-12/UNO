@@ -185,7 +185,7 @@ class Player:
 players = Player.player_gen()
 
 
-def game():
+def pvp_game():
     end = False
     for player in players:
         player.distribute()
@@ -203,4 +203,4 @@ def game():
                 break
 
 
-game()
+pvp_game()
