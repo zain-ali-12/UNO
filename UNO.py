@@ -5,7 +5,7 @@ deck = []
 colors = ["red", "green", "blue", "yellow"]
 special_cards = ["reverse", "skip", "draw 2"]
 wild_cards = ["wild", "draw 4"]
-playing_deck = [["red", "2"]]
+playing_deck = []
 
 
 class NormalCards:
@@ -71,7 +71,7 @@ def playing_deck_top():
     if len(playing_deck) > 0:
         return playing_deck[-1]
     else:
-        return [[]]
+        return []
 
 
 class Player:
@@ -96,17 +96,24 @@ class Player:
         del deck[0]
 
     def check_valid_cards(self):
+        if Player.chosen_color is not None:
+            print(f"\nYou can only play {Player.chosen_color} cards\n")
         for card in self.card_set:
-            if Player.chosen_color is None:
-                if card[0] == "wild":
-                    self.valid_cards.append(card)
-                    print(card)
-                elif card[0] in playing_deck_top() or card[1] in playing_deck_top():
-                    self.valid_cards.append(card)
+            if len(playing_deck_top()) is not 0:
+                if Player.chosen_color is None:
+                    if card[0] == "wild":
+                        self.valid_cards.append(card)
+                        print(card)
+                    elif card[0] in playing_deck_top() or card[1] in playing_deck_top():
+                        self.valid_cards.append(card)
+                    else:
+                        pass
+                else:
+                    if card[0] == Player.chosen_color:
+                        self.valid_cards.append(card)
+
             else:
-                if card[0] == Player.chosen_color:
-                    self.valid_cards.append(card)
-                Player.chosen_color = None
+                self.valid_cards. append(card)
 
     def play(self):
         self.drew = 0
