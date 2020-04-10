@@ -195,6 +195,8 @@ def pvp_game():
                 end = True
                 break
             player.play()
+            if len(player.card_set) == 0:
+                break
     else:
         for player in players:
             if len(player.card_set) == 0:
